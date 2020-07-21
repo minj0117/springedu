@@ -194,7 +194,7 @@
 		<!-- Spring-test 종료 -->
 		
 		
-		<!-- Junit 시작 -->
+		<!-- Junit 단위 테스트를 하기 위한 프레임워크 시작 -->
 		<dependency>
 		    <groupId>org.junit.jupiter</groupId>
 		    <artifactId>junit-jupiter-api</artifactId>
@@ -207,6 +207,15 @@
 		    <version>${junit-jupiter-version}</version>
 		</dependency>		
 		<!-- Junit 종료 -->
+		
+		<!-- annotation을 사용해서 DTO, VO등의 객체에 setter, getter, constructor 등 자동 생성 -->
+		<dependency>
+		    <groupId>org.projectlombok</groupId>
+		    <artifactId>lombok</artifactId>
+		    <version>1.18.12</version>
+		    <scope>provided</scope>
+		</dependency>
+		
 		    
 	</dependencies>
     <build>
