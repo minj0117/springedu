@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -18,12 +19,15 @@ import com.kh.portfolio.member.vo.MemberVO;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
-public class MemberDAOImplJDBCTest {
+public class MemberDAOImplXMLTest {
 	
 	private static final Logger logger = 
-			LoggerFactory.getLogger(MemberDAOImplJDBCTest.class);
+			LoggerFactory.getLogger(MemberDAOImplXMLTest.class);
 	
 	@Inject
+	//spring 컨테이너에 동일 타입의 bean이 존재할 경우 명시적으로 참조하고자 하는 bean을 지정할 때 사용
+	//spring 컨테이너에서 관리되는 bean 이름은 특별히 지정해 주지 않으면 클래스명을 기본값으로 갖는다(첫 글자는 소문자).
+	@Qualifier ("memberDAOImplXML") 
 	MemberDAO memberDAO;
 	
 	@Test			//테스트 대상에서 포함할 때
@@ -31,7 +35,7 @@ public class MemberDAOImplJDBCTest {
 	@Disabled //테스트 대상에서 제외할 때
 	void joinMember() {
 		MemberVO memberVO = new MemberVO();
-		memberVO.setId("test2@test.com");
+		memberVO.setId("test3@test.com");
 		memberVO.setPw("1234");
 		memberVO.setTel("010-1234-5678");
 		memberVO.setNickname("관리자2");
@@ -60,7 +64,7 @@ public class MemberDAOImplJDBCTest {
 		
 		int cnt = memberDAO.modifyMember(memberVO);
 		
-		Assertions.assertEquals(2, cnt);
+		Assertions.assertEquals(1, cnt);
 		logger.info("cnt:"+cnt);							
 	}
 	
@@ -80,7 +84,7 @@ public class MemberDAOImplJDBCTest {
 	@DisplayName("회원조회(개인)")
 	@Disabled
 	void listOneMember() {
-		String id = "test@test.com";
+		String id = "test2@test.com";
 		MemberVO memberVO = memberDAO.listOneMember(id);
 		logger.info(memberVO.toString());
 	}
@@ -89,8 +93,8 @@ public class MemberDAOImplJDBCTest {
 	@DisplayName("회원탈퇴")
 	@Disabled
 	void outMember() {
-		String id = "test@test.com";
-		String pw = "1234";
+		String id = "test2@test.com";
+		String pw = "3333";
 		int result = memberDAO.outMember(id, pw);
 		Assertions.assertEquals(1, result);		
 	}
@@ -99,7 +103,7 @@ public class MemberDAOImplJDBCTest {
 	@DisplayName("로그인")
 	@Disabled
 	void login() {
-		String id = "test2@test.com";
+		String id = "test3@test.com";
 		String pw = "1234";
 		MemberVO memberVO = memberDAO.login(id, pw);
 		logger.info(memberVO.toString());
@@ -110,18 +114,18 @@ public class MemberDAOImplJDBCTest {
 	@Disabled
 	void findID() {
 		String tel = "010-1234-5678";
-		String birth = "2000-01-03";
+		String birth = "2000-01-02";
 		String id = memberDAO.findID(tel, birth);
-		Assertions.assertEquals("test2@test.com", id);			
+		Assertions.assertEquals("test3@test.com", id);			
 	}
 	
 	@Test
 	@DisplayName("비밀번호 찾기")
 	@Disabled
 	void findPW() {
-		String id = "test2@test.com";
+		String id = "test3@test.com";
 		String tel = "010-1234-5678";
-		String birth = "2000-01-03";
+		String birth = "2000-01-02";
 		
 		String pw = memberDAO.findPW(id, tel, birth);
 		Assertions.assertEquals("1234", pw);			
@@ -129,8 +133,9 @@ public class MemberDAOImplJDBCTest {
 	
 	@Test
 	@DisplayName("비밀번호 변경")
+	//@Disabled
 	void changePW() {		
-		String id = "test2@test.com";
+		String id = "test3@test.com";
 		String pw = "3333";
 		int result = memberDAO.changePW(id, pw);
 //		Assertions.assertEquals(1	, result);
