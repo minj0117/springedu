@@ -19,7 +19,8 @@
 			       region   = #{region},
 			       birth    = #{birth},
 		         udate    = systimestamp
-			 where id       = #{id} 				
+			 where id       = #{id} 
+			   and pw       = #{pw}				
 	</update>
 	
 	<!-- //회원 전체 조회 -->

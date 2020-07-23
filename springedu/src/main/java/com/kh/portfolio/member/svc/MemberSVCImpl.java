@@ -34,56 +34,63 @@ public class MemberSVCImpl implements MemberSVC {
 	//회원 수정
 	@Override
 	public int modifyMember(MemberVO memberVO) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = 0;
+		
+		result = memberDAO.modifyMember(memberVO);
+		
+		
+		return result;
 	}
 
 	//회원 전체 조회
 	@Override
 	public List<MemberVO> listAllMember() {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 
 	//회원 조회 (개인)
 	@Override
 	public MemberVO listOneMember(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		MemberVO memberVO = null;
+		
+		memberVO = memberDAO.listOneMember(id);
+		
+		return memberVO;
 	}
 
 	//회원 탈퇴
 	@Override
 	public int outMember(String id, String pw) {
-		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 
 	//로그인
 	@Override
 	public MemberVO login(String id, String pw) {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 	
 	//아이디 찾기
 	@Override
 	public String findID(String tel, String birth) {
-		// TODO Auto-generated method stub
+	
 		return null;
 	}
 
 	//비밀번호 찾기
 	@Override
 	public String findPW(String id, String tel, String birth) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	//비밀번호 변경
 	@Override
 	public int changePW(String id, String pw) {
-		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 	

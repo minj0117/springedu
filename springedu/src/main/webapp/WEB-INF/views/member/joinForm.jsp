@@ -179,7 +179,7 @@
 			<div class="content">
 				<aside>&nbsp;</aside>
 				<section>
-					<form id="joinForm" method="post" action="${contextPath }/member/join.do">
+					<form id="joinForm" method="post" action="${contextPath }/member/join">
 						<h1>회원가입</h1>
 						<ul>
 							<li><label for="id">아이디</label></li>
