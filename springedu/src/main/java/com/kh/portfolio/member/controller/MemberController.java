@@ -30,6 +30,7 @@ public class MemberController {
 		return "/member/joinForm";
 	}	
 	
+	//회원가입 처리
 	@PostMapping("/join")
 	public String join(MemberVO memberVO, Model model) {
 		logger.info("MemberController.join(MemberVO memberVO) 호출됨!");
@@ -41,7 +42,7 @@ public class MemberController {
 		} else {
 			model.addAttribute("errmsg", "error");
 			return "/member/joinForm";			
-		}
-		
+		}		
 	}
+	
 }

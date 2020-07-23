@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.portfolio.member.vo.MemberVO;
 
-@Repository("abc")
+@Repository
 public class MemberDAOImplJdbc implements MemberDAO {
 
 	private static final Logger logger = LoggerFactory.getLogger(MemberDAOImplJdbc.class);
