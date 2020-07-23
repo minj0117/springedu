@@ -100,12 +100,13 @@
 							<li><label for="nickname">별칭</label></li>
 							<li><input type="text" name="nickname" id="nickname" value='${sessionScope.member.nickname}' /></li>
 							<li><label>성별</label></li>
-							<li><input type="radio" name="gender" value="남" id="men"
-								${sessionScope.member.gender =="남" ? 'checked="checked"' : ''} /><label
-								for="men">남자</label> <input type="radio" name="gender" value="여"
-								id="women"
-								${sessionScope.member.gender =="여" ? 'checked="checked"' : ''} /><label
-								for="women">여자</label></li>
+							<li>
+								<input type="radio" name="gender" value="남" id="men"
+								${sessionScope.member.gender =="남" ? 'checked="checked"' : ''} />
+								<label for="men">남자</label> 
+								<input type="radio" name="gender" value="여"
+								id="women" ${sessionScope.member.gender =="여" ? 'checked="checked"' : ''} />
+								<label for="women">여자</label></li>
 							<li><label for="region">지역</label></li>
 							<li><select name="region" id="region">
 									<option value="">== 선 택==</option>

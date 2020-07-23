@@ -61,15 +61,15 @@
 		<div class="container">
 			<div class="content">
 				<section>
-					<form method="POST" action="${pageContext.request.contextPath}/member/changePW ">
+					<form method="POST" action="${contextPath}/member/changePW ">
 						<ul>
 							<li><label for="id">아이디</label></li>						
 							<li><input type="text" name="id" readonly="readonly" value="${sessionScope.member.id}"/></li>
 							<li><label for="prepw">현재비밀번호</label></li>
 							<li><input type="password" name="prepw" id="prepw" placeholder="현재 비밀번호를 입력하세요!" required="required"/></li>
-							<li><span class="errmsg">${requestScope.errmsg }</span></li>
-							<li><label for="nextpw">변경할 비밀번호</label></li>
-							<li><input type="password" name="nextpw" id="nextpw" placeholder="변경할 비밀번호를 입력하세요!" required="required"/></li>
+							<li><span class="errmsg">${requestScope.svr_msg }</span></li>
+							<li><label for="postpw">변경할 비밀번호</label></li>
+							<li><input type="password" name="postpw" id="postpw" placeholder="변경할 비밀번호를 입력하세요!" required="required"/></li>
 							<li><span class="errmsg"></span></li>
 							<li><button>비밀번호 변경</button></li>
 						</ul>

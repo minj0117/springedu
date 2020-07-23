@@ -57,7 +57,7 @@
 	
 	<!-- //아이디 찾기 -->
 	<select id="findID"
-					parameterType="map"
+					parameterType="com.kh.portfolio.member.vo.MemberVO"
 					resultType="string">
 		select id 
 		  from member
@@ -67,12 +67,12 @@
 	
 	<!-- //비밀번호 찾기 -->
 	<select id="findPW"
-					parameterType="map"
+					parameterType="com.kh.portfolio.member.vo.MemberVO"
 					resultType="string">
 			select pw 
 			  from member
-			 where id = #{id}
-		     and tel = #{tel}
+			 where id    = #{id}
+		     and tel   = #{tel}
 			   and birth = #{birth}
 	</select>
 	
@@ -80,8 +80,9 @@
 	<update id="changePW"
 					parameterType="map">
 			update member 
-		     set pw = #{pw} 
+		     set pw = #{postpw} 
 		   where id = #{id} 	
+		     and pw = #{prepw} 
 	</update>
 	
 	<!-- //프로파일 이미지 조회 -->
