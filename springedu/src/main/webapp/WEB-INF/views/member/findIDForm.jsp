@@ -6,6 +6,7 @@
     <style>
     	#findIDForm * {
     		box-sizing: border-box;
+    		margin: 2px;
     	}
        
     	#findIDForm input {
@@ -54,9 +55,9 @@
 					
 					//부모창 접근은 window.opener 속성 이용
 					window.opener//
-								cument.getElementById('id').value = findedIDTag.textContent;
+								.document.getElementById('id').value = findedIDTag.textContent;
 					window.opener//
-								cument.getElementById('pw').select();
+								.document.getElementById('pw').select();
 					window.close();
 				}
       }
@@ -75,6 +76,7 @@
 					document.getElementById('birth').select();
 					return false;
 				}
+				return true;
       }
 
       //아이디 찾기 버튼 클릭 시
@@ -109,12 +111,12 @@
             const jsonObj = JSON.parse(this.responseText);
 
 						switch(jsonObj.rtcode){
-						case "success" :
-							findedIDTag.textContent = jsonObj.value;
+						case "00" :
+							findedIDTag.textContent = jsonObj.result;
 							errmsgTag.textContent = '';
 							break;
-						case "fail" :
-							errmsgTag.textContent = jsonObj.value;
+						case "01" :
+							errmsgTag.textContent = jsonObj.result;
 							break;
 						}          
           }
@@ -131,13 +133,24 @@
         //4)서비스 요청
         xhttp.open(
           "POST",
-          "http://localhost:9080/myweb/member/findIdByRestfull"
+          "http://localhost:9080${contextPath}/member/id"
         );
-        xhttp.setRequestHeader(
+        //post form요청 시 필요
+/*         xhttp.setRequestHeader(
           "Content-Type",
           "application/x-www-form-urlencoded"
-        );
-        xhttp.send("result=" + result);
+        ); */
+
+        //post json요청 시 필요
+        xhttp.setRequestHeader(
+          "Content-Type",
+          "application/json;charset=utf-8"
+        ); 
+
+        //querystring 전송 필요 시              
+        //xhttp.send("result=" + result);
+        //querystring 불필요시
+        xhttp.send(result);
       }
     </script>
   </head>

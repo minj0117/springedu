@@ -170,6 +170,9 @@ public class MemberController {
 		
 		//문자열 birth를 java.sql.Date타입으로 변환
 		memberVO.setBirth(java.sql.Date.valueOf(memberVO.getBirth().toString()));
+		
+		logger.info("tel:"+memberVO.getTel());
+		logger.info("birth:"+memberVO.getBirth());
 		findID = memberSVC.findID(memberVO.getTel(), memberVO.getBirth());
 		
 		Map<String, Object> map = new HashMap<>();
@@ -199,8 +202,37 @@ public class MemberController {
 	//비밀번호 찾기
 	@PostMapping(value="/pw", produces="application/json")
 	@ResponseBody
-	public ResponseEntity<Map> findPW(){
-		ResponseEntity<Map> res = null;
+	public ResponseEntity<Map> findPW(
+			@RequestBody MemberVO memberVO
+			){
+		logger.info("ResponseEntity<Map> findPW() 호출됨!!");
+		logger.info("id:"+memberVO.getId());
+		logger.info("tel:"+memberVO.getTel());
+		logger.info("birth:"+memberVO.getBirth());		
+		ResponseEntity<Map> res = null;	 
+		String findPW = null;		
+		
+		//문자열 birth를 java.sql.Date타입으로 변환
+		memberVO.setBirth(java.sql.Date.valueOf(memberVO.getBirth().toString()));
+		
+		logger.info("id:"+memberVO.getId());
+		logger.info("tel:"+memberVO.getTel());
+		logger.info("birth:"+memberVO.getBirth());
+		findPW = memberSVC.findPW(memberVO.getId(), memberVO.getTel(), memberVO.getBirth());
+		
+		Map<String, Object> map = new HashMap<>();
+		//비밀번호를 찾았으면
+		if(findPW != null) {
+			map.put("rtcode", "00");
+			map.put("result", findPW);
+			res = new ResponseEntity<Map>(map, HttpStatus.OK); //200
+		} else {
+			map.put("rtcode", "01");
+			map.put("result", "찾고자 하는 아이디가 없습니다.");
+			res = new ResponseEntity<Map>(map, HttpStatus.OK); //200
+		}
+		
+		
 		
 		return res;		
 	}

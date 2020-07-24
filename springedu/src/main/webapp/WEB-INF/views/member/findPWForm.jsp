@@ -6,6 +6,7 @@
 	<style>
 		#findPWForm * {
 			box-sizing: border-box;
+			margin: 2px;
 		}
 	   
 		#findPWForm input {
@@ -54,7 +55,7 @@
 				
 				//부모창 접근은 window.opener 속성 이용
 				window.opener//
-							cument.getElementById('pw').value = findedPWTag.textContent;
+							.document.getElementById('pw').value = findedPWTag.textContent;
 				window.close();
 			}
    }
@@ -81,6 +82,7 @@
 					document.getElementById('birth').select();
 					return false;
 				}				
+				return true;
    }
 
 
@@ -111,12 +113,12 @@
 				const jsonObj = JSON.parse(this.responseText);
 				
 				switch(jsonObj.rtcode){
-				case "success" :
-					findedPWTag.textContent = jsonObj.value;
+				case "00" :
+					findedPWTag.textContent = jsonObj.result;
 					errmsgTag.textContent = '';
 					break;
-				case "fail" :
-					errmsgTag.textContent = jsonObj.value;
+				case "01" :
+					errmsgTag.textContent = jsonObj.result;
 					break;
 				} 
 			}
@@ -131,11 +133,15 @@
 		const result = JSON.stringify(reqParam);
 
 		//4)서비스 요청
-		xhttp.open("POST",
-				"http://localhost:9080/myweb/member/findPwByRestfull");
-		xhttp.setRequestHeader("Content-Type",
-				"application/x-www-form-urlencoded");
-		xhttp.send("result=" + result);
+		xhttp.open(
+				"POST",
+				"http://localhost:9080/${contextPath}/member/pw"
+				);
+		xhttp.setRequestHeader(
+				"Content-Type",
+				"application/json;charset=utf-8"
+				);
+		xhttp.send(result);
 	}
 
 </script>

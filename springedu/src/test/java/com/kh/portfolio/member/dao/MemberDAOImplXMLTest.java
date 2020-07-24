@@ -1,5 +1,6 @@
 package com.kh.portfolio.member.dao;
 
+import java.sql.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -111,10 +112,11 @@ public class MemberDAOImplXMLTest {
 	
 	@Test
 	@DisplayName("아이디 찾기")
-	@Disabled
+//	@Disabled
 	void findID() {
 		String tel = "010-1234-5678";
-		String birth = "2000-01-02";
+//		String birth = "2000-01-02";
+		Date birth = java.sql.Date.valueOf("2001-01-03");		
 		String id = memberDAO.findID(tel, birth);
 		Assertions.assertEquals("test3@test.com", id);			
 	}
@@ -125,22 +127,23 @@ public class MemberDAOImplXMLTest {
 	void findPW() {
 		String id = "test3@test.com";
 		String tel = "010-1234-5678";
-		String birth = "2000-01-02";
-		
+//		String birth = "2000-01-02";
+		Date birth = java.sql.Date.valueOf("20001-01-03");		
 		String pw = memberDAO.findPW(id, tel, birth);
 		Assertions.assertEquals("1234", pw);			
 	}	
 	
 	@Test
 	@DisplayName("비밀번호 변경")
-	//@Disabled
+	@Disabled
 	void changePW() {		
-		String id = "test3@test.com";
-		String pw = "3333";
-		int result = memberDAO.changePW(id, pw);
+		String id = "test2@test.com";
+		String prepw = "3333";
+		String postpw = "3333";
+		int result = memberDAO.changePW(id, prepw, postpw);
 //		Assertions.assertEquals(1	, result);
 		
-		Assertions.assertEquals(pw, memberDAO.listOneMember(id).getPw());
+		Assertions.assertEquals(postpw, memberDAO.listOneMember(id).getPw());
 	}
 	
 }
