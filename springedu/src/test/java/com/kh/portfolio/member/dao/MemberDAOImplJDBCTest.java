@@ -114,7 +114,7 @@ public class MemberDAOImplJDBCTest {
 	void findID() {
 		String tel = "010-1234-5678";
 //		String birth = "2000-01-03";
-		Date birth = java.sql.Date.valueOf("20001-01-03");
+		Date birth = java.sql.Date.valueOf("2000-01-03");
 		String id = memberDAO.findID(tel, birth);
 		Assertions.assertEquals("test2@test.com", id);			
 	}
@@ -126,7 +126,7 @@ public class MemberDAOImplJDBCTest {
 		String id = "test2@test.com";
 		String tel = "010-1234-5678";
 //		String birth = "2000-01-03";
-		Date birth = java.sql.Date.valueOf("20001-01-03");		
+		Date birth = java.sql.Date.valueOf("2000-01-03");		
 		
 		String pw = memberDAO.findPW(id, tel, birth);
 		Assertions.assertEquals("1234", pw);			
@@ -137,9 +137,9 @@ public class MemberDAOImplJDBCTest {
 	@Disabled
 	void changePW() {		
 		String id = "test2@test.com";
-		String prepw = "3333";
 		String postpw = "3333";
-		int result = memberDAO.changePW(id, prepw, postpw);
+		String prepw = "3333";
+		int result = memberDAO.changePW(id, postpw, prepw);
 //		Assertions.assertEquals(1	, result);
 		
 		Assertions.assertEquals(postpw, memberDAO.listOneMember(id).getPw());
