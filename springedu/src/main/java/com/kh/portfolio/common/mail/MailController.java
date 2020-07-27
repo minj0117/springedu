@@ -1,7 +1,6 @@
 package com.kh.portfolio.common.mail;
 
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;

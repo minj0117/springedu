@@ -8,7 +8,7 @@ public class PasswordGeneratorMain {
 				.useUpper(true)
 				.usePunctuation(true)
 				.build();
-				String password = passwordGenerator.generate(8); 
+				String password = passwordGenerator.generate(10); 
 				System.out.println(password);
 	}
 }

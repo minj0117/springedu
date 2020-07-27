@@ -16,7 +16,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class) //스프링 컨텍스트와 junit을 통합
-@ContextConfiguration(locations={"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
+@ContextConfiguration(locations={"file:src/main/webapp/WEB-INF/spring/*.xml"})
 public class DBconnection {
 	private static final Logger logger=
 			LoggerFactory.getLogger(DBconnection.class);

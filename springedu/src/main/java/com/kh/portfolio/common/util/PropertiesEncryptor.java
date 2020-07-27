@@ -13,11 +13,11 @@ public class PropertiesEncryptor {
 		System.out.println(enc.encrypt("oracle.jdbc.driver.OracleDriver"));
 		System.out.println(enc.encrypt("jdbc:oracle:thin:@127.0.0.1:1521:xe"));
 		System.out.println(enc.encrypt("portfolio"));
-		System.out.println(enc.encrypt(""));
+		System.out.println(enc.encrypt("portfolio1234"));
 		
 		//mail암호화
 		System.out.println(enc.encrypt("byunminjung2750@gmail.com"));
-		System.out.println(enc.encrypt(""));
+		System.out.println(enc.encrypt("@qhdkrnjs117%"));
 		
 		//복호화
 		System.out.println(enc.decrypt("hUcYk7JR5X2aPkEsKSbYgU+G7J5F/Xqf"));

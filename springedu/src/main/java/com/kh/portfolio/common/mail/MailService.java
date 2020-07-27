@@ -19,17 +19,18 @@ public class MailService {
 		@Inject
 		private SimpleMailMessage preConfiguredMessage;
 		
+		private final String From = "byunminjung2750@gmail.com";
+		
 		@Async
 		public void sendMail(String to, String subject, String body) {
 			MimeMessage message = mailSender.createMimeMessage();
-			String from = "byunminjung2750@gmail.com";
 			
 			try {
 				
 				MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
 				messageHelper.setSubject(subject);
 				messageHelper.setTo(to);
-				messageHelper.setFrom(from);
+				messageHelper.setFrom(From);
 				messageHelper.setText(body,true);
 				mailSender.send(message);
 				

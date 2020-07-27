@@ -49,7 +49,9 @@
    function okBtn_f(){
 			event.preventDefault();
 			const findedPWTag = document.getElementById('findedPW');
-			//찾은 비밀번호가 발견되었으면
+			window.close();			
+			
+/* 			//찾은 비밀번호가 발견되었으면
 			if(findedPWTag.textContent){			
 				
 				
@@ -57,7 +59,7 @@
 				window.opener//
 							.document.getElementById('pw').value = findedPWTag.textContent;
 				window.close();
-			}
+			} */
    }
 
    //유효성 체크
@@ -135,7 +137,7 @@
 		//4)서비스 요청
 		xhttp.open(
 				"POST",
-				"http://localhost:9080/${contextPath}/member/pw"
+				"http://localhost:9080/${contextPath}/member/pwmail"
 				);
 		xhttp.setRequestHeader(
 				"Content-Type",
