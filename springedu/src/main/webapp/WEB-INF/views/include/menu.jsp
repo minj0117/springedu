@@ -4,8 +4,8 @@
 		<div class="container container-n">
 			<fmt:bundle basename="resource.menu">
 			<ul>
-				<!-- 웹표준 -->
-				<li><a href="#"><fmt:message key="menu.webstd"/></a></li>
+				<!-- 웹표준 --><!-- a link는 get 방식 -->
+				<li><a href="${contextPath }/board/writeForm"><fmt:message key="menu.webstd"/></a></li>
 				<!-- 자바 -->
 				<li><a href="#"><fmt:message key="menu.java"/></a></li>
 				<!-- 안드로이드 -->

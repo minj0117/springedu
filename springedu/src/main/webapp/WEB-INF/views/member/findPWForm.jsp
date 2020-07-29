@@ -46,7 +46,7 @@
 	}
 
 	 //확인 버튼 클릭 시 
-   function okBtn_f(){
+   function okBtn_f(event){
 			event.preventDefault();
 			const findedPWTag = document.getElementById('findedPW');
 			window.close();			
