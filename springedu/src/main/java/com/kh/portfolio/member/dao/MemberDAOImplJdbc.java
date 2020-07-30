@@ -28,8 +28,8 @@ public class MemberDAOImplJdbc implements MemberDAO {
 	@Override
 	public int joinMember(MemberVO memberVO) {
 
-		logger.info("MemberDAOImpl.joinMember(MemberVO memberVO) 호출됨!");
-		logger.info(memberVO.toString());
+//		logger.info("MemberDAOImpl.joinMember(MemberVO memberVO) 호출됨!");
+//		logger.info(memberVO.toString());
 		int result = 0;
 
 		// sql문 작성
@@ -47,7 +47,7 @@ public class MemberDAOImplJdbc implements MemberDAO {
 	// 회원 수정
 	@Override
 	public int modifyMember(MemberVO memberVO) {
-		logger.info("MemberDAOImpl.modifyMember(MemberVO memberVO) 호출됨!");
+//		logger.info("MemberDAOImpl.modifyMember(MemberVO memberVO) 호출됨!");
 		int result = 0;
 
 		StringBuilder sql = new StringBuilder();
@@ -70,7 +70,7 @@ public class MemberDAOImplJdbc implements MemberDAO {
 	// 회원 전체 조회
 	@Override
 	public List<MemberVO> listAllMember() {
-		logger.info("MemberDAOImpl.listAllMember() 호출됨");
+//		logger.info("MemberDAOImpl.listAllMember() 호출됨");
 		List<MemberVO> list = null;
 		
 		StringBuilder sql = new StringBuilder();
@@ -105,7 +105,7 @@ public class MemberDAOImplJdbc implements MemberDAO {
 	// 회원 개별 조회
 	@Override
 	public MemberVO listOneMember(String id) {
-		logger.info("MemberDAOImpl.listOneMember() 호출됨");
+//		logger.info("MemberDAOImpl.listOneMember() 호출됨");
 		
 		StringBuilder sql = new StringBuilder();
 		sql.append("select id,pw,tel,nickname,gender,region,birth,cdate,udate ");
@@ -124,7 +124,7 @@ public class MemberDAOImplJdbc implements MemberDAO {
 	// 회원 탈퇴
 	@Override
 	public int outMember(String id, String pw) {
-		logger.info("MemberDAOImpl.outMember(String id, String pw) 호출됨!");
+//		logger.info("MemberDAOImpl.outMember(String id, String pw) 호출됨!");
 		int result = 0;
 		
 		StringBuilder sql = new StringBuilder();
@@ -138,7 +138,7 @@ public class MemberDAOImplJdbc implements MemberDAO {
 	// 로그인
 	@Override
 	public MemberVO login(String id, String pw) {
-		logger.info("MemberDAOImpl.login(String id, String pw) 호출됨!");
+//		logger.info("MemberDAOImpl.login(String id, String pw) 호출됨!");
 		
 		StringBuilder sql = new StringBuilder();
 		sql.append("select id,pw,tel,nickname,gender,region,birth,cdate,udate ");
@@ -159,7 +159,7 @@ public class MemberDAOImplJdbc implements MemberDAO {
 	// 아이디 찾기
 	@Override
 	public String findID(String tel, Date birth) {
-		logger.info("MemberDAOImpl.findID(String tel, String birth) 호출됨!");
+//		logger.info("MemberDAOImpl.findID(String tel, String birth) 호출됨!");
 		
 		String id = null;
 		
@@ -181,7 +181,7 @@ public class MemberDAOImplJdbc implements MemberDAO {
 	// 비밀번호 찾기
 	@Override
 	public String findPW(String id, String tel, Date birth) {
-		logger.info("MemberDAOImpl.findPW(String id, String tel, String birth) 호출됨!");
+//		logger.info("MemberDAOImpl.findPW(String id, String tel, String birth) 호출됨!");
 		
 		String pw = null;
 		
@@ -204,7 +204,7 @@ public class MemberDAOImplJdbc implements MemberDAO {
 	// 비밀번호 변경
 	@Override
 	public int changePW(String id, String prepw, String postpw) {
-		logger.info("MemberDAOImpl.changePW(String id, String prepw, String postpw) 호출됨!");
+//		logger.info("MemberDAOImpl.changePW(String id, String prepw, String postpw) 호출됨!");
 		
 		int result = 0;
 		

@@ -1,6 +1,9 @@
 package com.kh.portfolio.board.vo;
 
 import java.sql.Timestamp;
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
 
@@ -20,7 +23,8 @@ public class BoardVO {
 	private int step; 													//	BSTEP	NUMBER(5,0)	Yes		11	답변글의 단계
 	private int bindent;												//	BINDENT	NUMBER(5,0)	Yes		12	답변글의 들여쓰기
 	
-	
+	//첨부파일
+	private List<MultipartFile> files;
 	
 	
 	

@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import com.kh.portfolio.member.dao.MemberDAO;
 import com.kh.portfolio.member.vo.MemberVO;
 
 @ExtendWith(SpringExtension.class)
