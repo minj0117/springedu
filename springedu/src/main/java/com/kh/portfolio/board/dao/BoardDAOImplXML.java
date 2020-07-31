@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import com.kh.portfolio.board.vo.BoardFileVO;
 import com.kh.portfolio.board.vo.BoardVO;
 
 @Repository
@@ -59,4 +60,27 @@ public class BoardDAOImplXML implements BoardDAO {
 		return null;
 	}
 
+	//파일 첨부
+	@Override
+	public int addFile(BoardFileVO boardFileVO) {
+		int result = 0;
+		
+		result = sqlSession.insert("mappers.BoardDAO-mapper.addFile", boardFileVO);
+		
+		return result;
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
