@@ -1,8 +1,11 @@
 package com.kh.portfolio.board.dao;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -11,7 +14,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import com.kh.portfolio.board.dao.BoardDAO;
 import com.kh.portfolio.board.vo.BoardCategoryVO;
 import com.kh.portfolio.board.vo.BoardVO;
 
@@ -27,6 +29,7 @@ public class BoardDAOImplXMLTest {
 	
 	@Test
 	@DisplayName("게시글 작성")
+	@Disabled
 	public void write() {
 //    #{cid},
 //    #{btitle},
@@ -45,6 +48,24 @@ public class BoardDAOImplXMLTest {
 		
 		int result = boardDAO.write(boardVO);
 		Assertions.assertEquals(1, result);
+	}
+	
+	@Test
+	@DisplayName("게시글 목록")
+	void list() {
+		
+		List<BoardVO> list = boardDAO.list();
+		logger.info("레코드 개수:" + list.size());
+		
+// case 1)		
+//		list.stream().forEach((board)->{
+//			System.out.println(board);
+//		});
+		
+// case 2) 람다식
+		list.stream().forEach(System.out::println);
+//		logger.info("게시글 목록:" + list.toString());
+		
 	}
 }
 

@@ -102,8 +102,11 @@ public class BoardSVCImpl implements BoardSVC {
 	//게시글 목록
 	@Override
 	public List<BoardVO> list() {
+		List<BoardVO> list = null;
+		
+		list = boardDAO.list();
 	
-		return null;
+		return list;
 	}
 
 }
