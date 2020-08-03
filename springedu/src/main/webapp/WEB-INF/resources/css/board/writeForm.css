@@ -34,8 +34,6 @@ form ul > li {
 form ul > li span {
 	grid-column:2/3;
 }
-
-
 form ul > li:nth-last-child(1) {
   display: flex;
   justify-content: flex-end;
@@ -46,9 +44,9 @@ form ul > li:nth-last-child(1) > button {
 form #bcontent {
   width: 100%;
 }
-
+form .client_msg,
 form .svr_msg{
-	font-size: 0.8em;
+	font-size: 0.7em;
 	font-weight: bold;
 	color:red;
 }

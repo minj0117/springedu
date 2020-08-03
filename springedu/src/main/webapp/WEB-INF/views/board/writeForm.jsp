@@ -22,7 +22,7 @@
 	<main>
 		<div class="container">
 			<div class="content">
-				<form:form id="writeForm" 
+				<form:form id="writeFrm" 
 									 method="post" 
 									 action="${contextPath }/board/write"
 									 enctype="multipart/form-data"
@@ -37,26 +37,31 @@
 		            <form:option value="1002">DATABASE</form:option>
 		            <form:option value="1003">JAVA</form:option>
 		          </form:select>
+		          <span class="client_msg" id="boardCategoryVO.cid.error"></span>
 		          <form:errors cssClass="svr_msg" path="boardCategoryVO.cid" />
 		        </li>
 		        <li>
 		          <form:label path="btitle">제목</form:label>
 		          <form:input type="text" path="btitle"/>
+		          <span class="client_msg" id="btitle.error"></span>
 		          <form:errors cssClass="svr_msg" path="btitle"/>
 		        </li>
 		        <li>
 		          <form:label path="bid">작성자</form:label>
 		          <form:input type="text" path="bid" />
+		          <span class="client_msg" id="bid.error"></span>
 		          <form:errors cssClass="svr_msg" path="bid"/>
 		        </li>
 		        <li>
 		          <form:label path="bcontent">내용</form:label>
 		          <form:textarea path="bcontent" rows="10"></form:textarea>
+		          <span class="client_msg" id="bcontent.error"></span>
 		          <form:errors cssClass="svr_msg" path="bcontent"/>
 		        </li>
 		        <li>
 		          <form:label path="">첨부</form:label>
 		          <form:input type="file" path="files" multiple="multiple" />
+		          <span class="client_msg" id="files.error"></span>
 		          <form:errors cssClass="svr_msg" path="files"/>
 		        </li>		
 		        <li>

@@ -28,8 +28,11 @@ public class BoardController {
 	
 	//게시글 작성(화면)
 	@GetMapping("/writeForm")
-	public String writeForm(Model model) {		
-		model.addAttribute("boardVO", new BoardVO());
+	public String writeForm(
+			@ModelAttribute("boardVO") BoardVO boardVO, //case 1)
+			Model model) {		
+// case2)		
+//		model.addAttribute("boardVO", new BoardVO());
 		
 		return "/board/writeForm";
 	}
@@ -38,7 +41,7 @@ public class BoardController {
 	//게시글 작성 처리
 	@PostMapping("/write")
 	public String write(
-			@Valid BoardVO boardVO,
+			@Valid BoardVO boardVO, //유효성 체크 Valid
 			BindingResult result) {		
 		
 		if(result.hasErrors()) {
