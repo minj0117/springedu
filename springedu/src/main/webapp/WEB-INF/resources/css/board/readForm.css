@@ -34,11 +34,13 @@ form ul > li {
 form ul > li span {
 	grid-column:2/3;
 }
-form ul > li:nth-last-child(1) {
+
+/* 버튼 그룹 */
+form ul > li.btnGrp {
   display: flex;
   justify-content: flex-end;
 }
-form ul > li:nth-last-child(1) > button {
+form ul > li.btnGrp > button {
   margin-left: 3px;
 }
 form #bcontent {
@@ -70,3 +72,8 @@ form .svr_msg{
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
+
+form ul > li.umode  {
+	display: none;
+}	
+

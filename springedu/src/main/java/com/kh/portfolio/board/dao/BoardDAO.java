@@ -24,5 +24,11 @@ public interface BoardDAO {
 
 	//파일 첨부
 	int addFile(BoardFileVO boardFileVO);
+
+	//첨부파일 조회
+	List<BoardFileVO> getFiles(String bnum);
+
+	//첨부파일 조회수+ 1증가
+	void updateBhit(String bnum);
 	
 }

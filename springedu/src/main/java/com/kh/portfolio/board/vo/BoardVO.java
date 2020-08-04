@@ -41,7 +41,6 @@ public class BoardVO {
 	
 	//첨부파일
 	private List<MultipartFile> files;
-	
-	
+
 	
 }

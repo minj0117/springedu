@@ -15,6 +15,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.kh.portfolio.board.vo.BoardCategoryVO;
+import com.kh.portfolio.board.vo.BoardFileVO;
 import com.kh.portfolio.board.vo.BoardVO;
 
 @ExtendWith(SpringExtension.class)
@@ -52,6 +53,7 @@ public class BoardDAOImplXMLTest {
 	
 	@Test
 	@DisplayName("게시글 목록")
+	@Disabled
 	void list() {
 		
 		List<BoardVO> list = boardDAO.list();
@@ -66,6 +68,38 @@ public class BoardDAOImplXMLTest {
 		list.stream().forEach(System.out::println);
 //		logger.info("게시글 목록:" + list.toString());
 		
+	}
+	
+	@Test
+	@DisplayName("게시글 보기")
+	@Disabled
+	void view() {
+		String bnum = "66";
+		
+		BoardVO boardVO = boardDAO.view(bnum);
+		logger.info(boardVO.toString());
+
+	}
+	
+	@Test
+	@DisplayName("첨부파일 조회")
+	@Disabled
+	void getFiles() {
+		String bnum = "66";
+		List<BoardFileVO> list = boardDAO.getFiles(bnum);
+		
+		list.stream().forEach(System.out::println);
+		Assertions.assertEquals(3, list.size());		
+	}
+	
+	@Test
+	@DisplayName("첨부파일 조회수+ 1증가")
+	void updateBhit() {
+		String bnum = "66";
+		int preBhit = boardDAO.view(bnum).getBhit();
+		boardDAO.updateBhit(bnum);
+		int postBhit = boardDAO.view(bnum).getBhit();
+		Assertions.assertEquals(preBhit+1, postBhit);
 	}
 }
 

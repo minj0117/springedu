@@ -1,6 +1,7 @@
 package com.kh.portfolio.board.svc;
 
 import java.util.List;
+import java.util.Map;
 
 import com.kh.portfolio.board.vo.BoardVO;
 
@@ -16,7 +17,7 @@ public interface BoardSVC {
 	int delete(String bnum);
 	
 	//게시글 보기
-	BoardVO view(String bnum);
+	Map<String, Object> view(String bnum);
 	
 	//게시글 목록
 	List<BoardVO> list();
