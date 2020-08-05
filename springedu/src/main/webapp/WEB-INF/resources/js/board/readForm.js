@@ -13,16 +13,38 @@ const saveBtn = document.getElementById("saveBtn");
 /* 공통 버튼 */
 const listBtn = document.getElementById("listBtn");
 
-if(replyBtn) replyBtn.addEventListener("click", replyBtn_F);
-if(modifyBtn) replyBtn.addEventListener("click", modifyBtn_F);
-if(deleteBtn) replyBtn.addEventListener("click", deleteBtn_F);
+if(replyBtn) replyBtn.addEventListener("click", replyBtn_f);
+if(modifyBtn) modifyBtn.addEventListener("click", modifyBtn_f);
+if(deleteBtn) deleteBtn.addEventListener("click", deleteBtn_f);
 
-if(cancelBtn) cancelBtn.addEventListener("click", cancelBtn_F);
-if(saveBtn) cancelBtn.addEventListener("click", saveBtn_F);
-if(listBtn) cancelBtn.addEventListener("click", listBtn_F);
+if(cancelBtn) cancelBtn.addEventListener("click", cancelBtn_f);
+if(saveBtn) saveBtn.addEventListener("click", saveBtn_f);
+if(listBtn) listBtn.addEventListener("click", listBtn_f);
+
+//답글
+function replyBtn_f(e) {
+	console.log("답글");
+}
+
+//수정
+function modifyBtn_f(e) {
+	console.log("수정");
+}
+
+//삭제
+function deleteBtn_f(e) {
+ console.log("삭제");
+}
+
+//취소
+function cancelBtn_f(e) {
+  console.log("취소");
+  //입력한 내용 clear
+  writeFrm.reset();
+}
 
 //저장
-function modifyBtn_F(e) {
+function saveBtn_f(e) {
 	e.preventDefault();
   console.log("등록");
   
@@ -34,15 +56,8 @@ function modifyBtn_F(e) {
   writeFrm.submit();
 }
 
-//취소
-function cancelBtn_F(e) {
-  console.log("취소");
-  //입력한 내용 clear
-  writeFrm.reset();
-}
-
 //목록
-function listBtn_F(e) {
+function listBtn_f(e) {
   console.log("목록");
   //목록 리스트로 이동
   location.href = "/portfolio/board/list";

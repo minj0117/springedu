@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.BoardDAO-mapper">
+
+<!-- 게시판 카테고리 읽어 오기 -->
+<select id="getCategory"
+				resultType="com.kh.portfolio.board.vo.BoardCategoryVO">
+
+	select cid, cname
+	  from board_category	  
+
+</select>
+
 <!-- 게시글 작성 -->
 <insert id="write"
 				parameterType="com.kh.portfolio.board.vo.BoardVO">
@@ -26,12 +36,14 @@
 	    0,
 	    0
 	)
+	
 	<!-- 게시글 생성 후 게시글 번호가 생성되고, 생성된 번호를 읽어와서 BoardVO.setBnum()에 넣어줌. -->
 	<selectKey keyProperty="bnum" resultType="long" order="AFTER">
 		select BOARD_BNUM_SEQ.currval
 		  from dual
 	</selectKey>
 </insert>
+
 <!-- 파일 첨부 -->
 <insert id="addFile"
 				parameterType="com.kh.portfolio.board.vo.BoardFileVO">
@@ -79,8 +91,7 @@
 	    	 t1.bindent
 	  FROM board t1, board_category t2
 	 where t1.bcategory = t2.cid
-	   and t1.bnum = #{bnum}					
-	 			
+	   and t1.bnum = #{bnum}		 			
 				
 </select>
 
