@@ -122,7 +122,29 @@ public class BoardDAOImplXMLTest {
 		int postBhit = boardDAO.view(bnum).getBhit();
 		Assertions.assertEquals(preBhit+1, postBhit);
 	}
+	
+	@Test
+	@DisplayName("게시글 삭제")
+	@Disabled
+	void delete() {
+		String bnum = "66";
+		int result = boardDAO.delete(bnum);
+		Assertions.assertEquals(1, 1);
+	}
+	
+	@Test
+	@DisplayName("개시글 첨부파일 개별 삭제")
+	void deleteFile() {
+		String fid = "20";
+		int result = boardDAO.deleteFile(fid);
+		Assertions.assertEquals(1, 1);
+	}
+	
+
+	
 }
+
+
 
 
 

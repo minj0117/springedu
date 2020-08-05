@@ -52,8 +52,25 @@ public class BoardDAOImplXML implements BoardDAO {
 	//게시글 삭제
 	@Override
 	public int delete(String bnum) {
+		int result = 0;		
+		result = sqlSession.delete("mappers.BoardDAO-mapper.delete", Long.valueOf(bnum));				
+		return result;
+	}
+	
+	//게시글 첨부파일 개별 삭제
+	@Override
+	public int deleteFile(String fid) {
+		int result = 0;		
+		result = sqlSession.delete("mappers.BoardDAO-mapper.deleteFile", Long.valueOf(fid));				
+		return result;
+	}
 
-		return 0;
+	//게시글 첨부파일 전체 삭제
+	@Override
+	public int deleteFiles(String bnum) {
+		int result = 0;		
+		result = sqlSession.delete("mappers.BoardDAO-mapper.deleteFiles", Long.valueOf(bnum));				
+		return result;
 	}
 	
 	//게시글 보기
@@ -99,6 +116,10 @@ public class BoardDAOImplXML implements BoardDAO {
 		sqlSession.update("mappers.BoardDAO-mapper.updateBhit", Long.valueOf(bnum));
 		
 	}
+
+
+
+
 
 
 }

@@ -20,6 +20,12 @@ public interface BoardDAO {
 	//게시글 삭제
 	int delete(String bnum);
 	
+	//게시글 첨부파일 개별 삭제
+	int deleteFile(String fid);
+	
+	//게시글 첨부파일 전체 삭제
+	int deleteFiles(String bnum);
+	
 	//게시글 보기
 	BoardVO view(String bnum);
 	
