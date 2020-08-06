@@ -40,5 +40,8 @@ public interface BoardDAO {
 
 	//첨부파일 조회수+ 1증가
 	void updateBhit(String bnum);
+
+	//첨부파일 다운로드
+	BoardFileVO viewFile(String fid);
 	
 }

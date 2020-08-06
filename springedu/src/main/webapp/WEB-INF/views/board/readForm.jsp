@@ -4,7 +4,7 @@
 <%@ include file="/WEB-INF/views/include/common.jsp"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <title>게시글 보기</title>
-<link rel="stylesheet" href="${contextPath }/css/board/board.css" />
+<link rel="stylesheet" href="${contextPath }/css/main.css" />
 <link rel="stylesheet" href="${contextPath }/css/board/readForm.css" />
 <script defer src="${contextPath }/js/board/readForm.js"></script>
 </head>
@@ -24,9 +24,10 @@
 			<div class="content">
 				<form:form id="writeFrm" 
 									 method="post" 
-									 action="${contextPath }/board/write"
+									 action="${contextPath }/board/modify"
 									 enctype="multipart/form-data"
 								   modelAttribute="boardVO">
+					<form:hidden path="bnum"/>			   
 			    <legend id="title">게시글 보기</legend>
 		      <ul>
 		        <li>
@@ -80,13 +81,14 @@
 		        </li>
 		        <!-- 첨부 목록 -->
 		        <li>
-		          <form:label path="">첨부 목록</form:label>
+		          <form:label path="">첨부목록</form:label>
 		          <c:if test="${!empty files }">
 			          <div>
 				          <c:forEach var="file" items="${requestScope.files }">
-				          	<p>
-				          		<a href="">${file.fname }</a>
+				          	<p style="display:flex">
+				          		<a href="${contextPath }/board/file/${file.fid}">${file.fname }</a>
 				          		<span>(${file.fsize/1000 } kb)</span>
+				          		<span class="umode"><i style="padding-left:5px" class="fas fa-backspace"></i></span>				          
 				          	</p>
 				          </c:forEach>	
 			          </div>
