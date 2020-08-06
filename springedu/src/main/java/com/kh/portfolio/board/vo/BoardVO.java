@@ -36,7 +36,7 @@ public class BoardVO {
   @Size(min=4, message="내용은 최소 4자 이상 입력 바랍니다.")
 	private String bcontent;										//	BCONTENT	CLOB	Yes		9	본문 내용
 	private int bgroup;													//	BGROUP	NUMBER(5,0)	Yes		10	답글 그룹
-	private int step; 													//	BSTEP	NUMBER(5,0)	Yes		11	답변글의 단계
+	private int bstep; 													//	BSTEP	NUMBER(5,0)	Yes		11	답변글의 단계
 	private int bindent;												//	BINDENT	NUMBER(5,0)	Yes		12	답변글의 들여쓰기
 	
 	//첨부파일

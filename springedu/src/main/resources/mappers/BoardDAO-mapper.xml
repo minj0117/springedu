@@ -138,9 +138,15 @@
 				 t1.btitle, 
 				 t1.bnickname,
 				 t1.bcdate, 
-				 t1.bhit
+				 t1.bhit,
+				 t1.bgroup,
+	     	 t1.bstep,
+	    	 t1.bindent
 	  from board t1, board_category t2
 	 where t1.bcategory = t2.cid	
+order by t1.bgroup desc, 
+				 t1.bstep asc
+ 
 </select>
 
 <!-- 첨부파일 조회 -->
@@ -187,7 +193,54 @@
 	 where fid = #{fid}					
 
 </select>
+
+<!-- 답글 작성 -->
+<insert id="reply"
+				parameterType="com.kh.portfolio.board.vo.BoardVO">
+				
+	INSERT INTO board (
+	    bnum,
+	    bcategory,
+	    btitle,
+	    bid,
+	    bnickname,
+	    bcontent,
+	    bgroup,
+	    bstep,
+	    bindent
+	) VALUES (
+	    BOARD_BNUM_SEQ.nextval,
+	    #{boardCategoryVO.cid},
+	    #{btitle},
+	    #{bid},
+	    #{bnickname},
+	    #{bcontent},
+			#{bgroup},
+	    #{bstep} + 1,
+	    #{bindent} + 1
+	)
+	
+	<!-- 답글 생성 후 게시글 번호가 생성되고, 생성된 번호를 읽어와서 BoardVO.setBnum()에 넣어줌. -->
+	<selectKey keyProperty="bnum" resultType="long" order="AFTER">
+		select BOARD_BNUM_SEQ.currval
+		  from dual
+	</selectKey>	
+</insert>
+
+<!-- 이전 답글 step 업데이트 -->
+<!-- 이전 답글 중 원글의 bstep보다 큰 값이 있는 경우 bstep+1증가 -->
+<update id="updateStep"
+				parameterType="map">
+
+	update board
+	   set bstep  = bstep + 1
+	 where bgroup = #{bgroup}
+	   and bstep  > #{bstep}  
+
+</update>
+
 </mapper>
+
 
 
 

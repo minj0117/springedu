@@ -44,4 +44,13 @@ public interface BoardDAO {
 	//첨부파일 다운로드
 	BoardFileVO viewFile(String fid);
 	
+	//게시글 답글
+	int reply(BoardVO boardVO);
+	
 }
+
+
+
+
+
+
