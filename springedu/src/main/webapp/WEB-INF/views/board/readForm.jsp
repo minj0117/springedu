@@ -88,7 +88,7 @@
 				          	<p style="display:flex">
 				          		<a href="${contextPath }/board/file/${file.fid}">${file.fname }</a>
 				          		<span>(${file.fsize/1000 } kb)</span>
-				          		<span class="umode"><i style="padding-left:5px" class="fas fa-backspace"></i></span>				          
+				          		<span class="umode"><i  style="padding-left:5px" class="fas fa-backspace"></i></span>				          
 				          	</p>
 				          </c:forEach>	
 			          </div>
