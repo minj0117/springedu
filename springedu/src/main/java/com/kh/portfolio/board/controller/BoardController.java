@@ -178,6 +178,39 @@ public class BoardController {
 		return res;
 	}
 	
+	//게시글 답글 작성(화면)
+	@GetMapping("/reply/{bnum}")
+	public String replyForm(
+			@PathVariable("bnum") String bnum,
+			Model model) {
+		
+		//부모글 가져오기
+		Map<String, Object> map = boardSVC.view(bnum);
+		BoardVO boardVO = (BoardVO)map.get("board");		
+		
+		boardVO.setBid("");
+		boardVO.setBnickname("");
+		boardVO.setBtitle("[답글] "+boardVO.getBtitle());
+		boardVO.setBcontent("[원글] " + boardVO.getBcontent());
+		
+		model.addAttribute("boardVO", boardVO);
+		return "/board/replyForm";
+	}
+	
+	//게시글 답글 작성
+	@PostMapping("/reply")
+	public String reply(			
+			@Valid @ModelAttribute BoardVO boardVO,
+			BindingResult result) {
+		
+		if(result.hasErrors()) {
+			return "/board/replyForm";
+		}
+		
+		boardSVC.reply(boardVO);
+		
+		return "redirect:/board/list";
+	}
 	
 	
 }

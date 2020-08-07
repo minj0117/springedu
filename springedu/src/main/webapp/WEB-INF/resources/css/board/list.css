@@ -8,6 +8,7 @@
 	grid-auto-rows: minmax(20px, auto);
   border-top: 1px solid;
   border-left: 1px solid;
+  padding: 0px;
 }
 #boardList .wrapper div {
   border-bottom: 1px solid;

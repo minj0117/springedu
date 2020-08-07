@@ -29,6 +29,9 @@ changeMode(false); //읽기 모드
 //답글
 function replyBtn_f(e) {
 	console.log("답글");
+	const bnum = e.target.getAttribute("data-bnum");
+	const url = `/portfolio/board/reply/${bnum}`;
+	window.location.href= url;
 }
 
 //수정

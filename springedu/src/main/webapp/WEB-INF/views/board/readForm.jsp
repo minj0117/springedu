@@ -4,7 +4,7 @@
 <%@ include file="/WEB-INF/views/include/common.jsp"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <title>게시글 보기</title>
-<link rel="stylesheet" href="${contextPath }/css/main.css" />
+<link rel="stylesheet" href="${contextPath }/css/board/board.css" />
 <link rel="stylesheet" href="${contextPath }/css/board/readForm.css" />
 <script defer src="${contextPath }/js/board/readForm.js"></script>
 </head>
@@ -68,7 +68,7 @@
 		        </li>
 		        <li class="btnGrp">
 		        	<!-- 읽기모드 버튼 -->		
-		          <form:button id="replyBtn"  type="button" class="btn rmode btn-outline-success">답글</form:button>
+		          <form:button id="replyBtn"  type="button" class="btn rmode btn-outline-success" data-bnum="${requestScope.boardVO.bnum }">답글</form:button>
 		          <form:button id="modifyBtn" type="button" class="btn rmode btn-outline-danger">수정</form:button>
 		          <form:button id="deleteBtn" type="button" class="btn rmode btn-outline-info" data-bnum="${requestScope.boardVO.bnum }">삭제</form:button>
 		  

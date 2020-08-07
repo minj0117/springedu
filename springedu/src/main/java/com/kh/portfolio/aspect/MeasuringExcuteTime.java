@@ -27,7 +27,7 @@ public class MeasuringExcuteTime {
 							.append(signature.getName());
 
 		
-		logger.info("[Log: Around]Before:" + methodName + 
+		logger.info("[Log: Around] Before:" + methodName + 
 								" start : " + Arrays.deepToString(joinPoint.getArgs()));		
 		long startTime = System.nanoTime(); //시작 시간
 		
@@ -51,7 +51,7 @@ public class MeasuringExcuteTime {
 		long endTime = System.nanoTime(); //종료 시간
 //		long takenTime = TimeUnit.NANOSECONDS.toSeconds(endTime-startTime);
 		double takenTime = (endTime-startTime)/(double)1000000000;
-		logger.info("[Log: Around]After:" + methodName + " end:");		
+		logger.info("[Log: Around] After:" + methodName + " end:");		
 		logger.info("[Log: Around] :" + methodName + " Processiong time : " + (takenTime) + "sec");		
 		return result;
 	}
