@@ -51,19 +51,42 @@
 			      <div class="btnGrp"><button id="writeBtn">글쓰기</button></div>
 			      <div class="paging">
 			        <div></div>
-			        <div><a>첫페이지</a></div>
-			        <div><a>이전페이지</a></div>
-			        <div><a>1</a></div>
-			        <div><a>2</a></div>
-			        <div><a>3</a></div>
-			        <div><a>4</a></div>
-			        <div><a>5</a></div>
-			        <div><a>6</a></div>
-			        <div><a>7</a></div>
-			        <div><a>8</a></div>
-			        <div><a>9</a></div>
-			        <div><a>다음페이지</a></div>
-			        <div><a>끝페이지</a></div>
+			        <c:if test="${pageCriteria.prev }">
+			        <!-- 첫 페이지 -->
+			        <div>
+			        	<a href="${contextPath }/board/list/1"><i class="fas fa-angle-double-left"></i></a>
+			        </div>
+			  			<!-- 이전 페이지 -->       
+			        <div>
+			        	<a href="${contextPath }/board/list/${pageCriteria.startPage-1 }"><i class="fas fa-angle-left"></i></a>			      
+			        </div>
+			        </c:if>
+
+			        <c:forEach var="pageNum" begin="${pageCriteria.startPage }"
+			        												 end="${pageCriteria.endPage }">
+			        
+			        <!-- 현재 페이지와 요청페이지가 같으면 -->
+			        <c:if test="${pageNum == pageCriteria.rc.reqPage }">												 
+			        <div class="active">	
+			        </c:if>		        
+			        <!-- 현재 페이지와 요청페이지가 같으면 -->
+			        <c:if test="${pageNum != pageCriteria.rc.reqPage }">			
+			        <div>
+			        </c:if>				
+			        	<a href="${contextPath }/board/list/${pageNum }">${pageNum }</a>
+			        </div>			       		        
+							</c:forEach>				      
+							  
+			       	<c:if test="${pageCriteria.next }">
+			       	<!-- 다음 페이지 -->
+			        <div>
+			        	<a href="${contextPath }/board/list/${pageCriteria.endPage+1 }"><i class="fas fa-angle-right"></i></a>			        	
+			        </div>
+			        <!-- 최종 페이지 -->
+			        <div>
+			        	<a href="${contextPath }/board/list/${pageCriteria.finalEndPage }"><i class="fas fa-angle-double-right"></i></a>
+			        </div>
+			        </c:if>
 			      </div>
 			      <div class="find">
 			        <form method="POST" action="">

@@ -94,6 +94,18 @@ public class BoardDAOImplXML implements BoardDAO {
 		
 		return list;
 	}
+	
+	//게시글 목록
+	@Override
+	public List<BoardVO> list(int startRec, int endRec) {
+		List<BoardVO> list = null;
+		Map<String, Object> map = new HashMap<>();
+		map.put("startRec", startRec);
+		map.put("endRec", endRec);
+		list = sqlSession.selectList("mappers.BoardDAO-mapper.list", map);		
+		return list;
+	}
+
 
 	//파일 첨부
 	@Override
@@ -148,6 +160,16 @@ public class BoardDAOImplXML implements BoardDAO {
 		map.put("bstep", bstep);
 		return sqlSession.update("mappers.BoardDAO-mapper.updateStep", map);
 }
+
+
+	//게시글 총 레코드 수
+	@Override
+	public int totalRecordCount() {
+		return sqlSession.selectOne("mappers.BoardDAO-mapper.totalRecordCount");
+	}
+
+	
+
 
 }
 

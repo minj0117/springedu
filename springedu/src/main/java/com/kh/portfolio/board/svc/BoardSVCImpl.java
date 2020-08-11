@@ -17,6 +17,8 @@ import com.kh.portfolio.board.dao.BoardDAO;
 import com.kh.portfolio.board.vo.BoardCategoryVO;
 import com.kh.portfolio.board.vo.BoardFileVO;
 import com.kh.portfolio.board.vo.BoardVO;
+import com.kh.portfolio.common.page.PageCriteria;
+import com.kh.portfolio.common.page.RecordCriteria;
 
 @Service
 public class BoardSVCImpl implements BoardSVC {
@@ -27,6 +29,12 @@ public class BoardSVCImpl implements BoardSVC {
 	@Inject
 	BoardDAO boardDAO;
 	
+	@Inject
+	RecordCriteria recordCriteria;
+	
+	@Inject
+	PageCriteria pageCriteria;	
+
 	//게시판 카테고리 읽어 오기
 	@Override
 	public List<BoardCategoryVO> getCategory() {
@@ -76,16 +84,11 @@ public class BoardSVCImpl implements BoardSVC {
 				// 첨부파일 저장
 				if(boardFileVO.getFsize() > 0) {
 					boardDAO.addFile(boardFileVO);
-				}
-				
-			} catch (IOException e) {
-	
+				}				
+			} catch (IOException e) {	
 				e.printStackTrace();
-			}
-			
-			
-		}
-		
+			}			
+		}		
 	}
 
 	//게시글 수정
@@ -99,25 +102,21 @@ public class BoardSVCImpl implements BoardSVC {
 		//2) 첨부파일 저장
 		//첨부파일이 존재하면
 		List<MultipartFile> files = boardVO.getFiles();
-		if(files != null && files.size() > 0) {
-			
+		if(files != null && files.size() > 0) {			
 			addFiles(files, boardVO.getBnum());
 		}
-
 		return result;
 	}
 	
 	//게시글 삭제
 	@Override
-	public int delete(String bnum) {
-	
+	public int delete(String bnum) {	
 		return boardDAO.delete(bnum);
 	}
 	
 	//게시글 첨부파일 개별 삭제
 	@Override
-	public int deleteFile(String fid) {
-	
+	public int deleteFile(String fid) {	
 		return boardDAO.delete(fid);
 	}
 	
@@ -154,6 +153,22 @@ public class BoardSVCImpl implements BoardSVC {
 	
 		return list;
 	}
+	
+	//게시글 목록
+	@Override
+	public List<BoardVO> list(int reqPage) {
+		List<BoardVO> list = null;
+		
+		//요청 페이지		
+		recordCriteria.setReqPage(reqPage);		
+		
+		//한 페이지에 보여줄 레코드 수 세팅
+		recordCriteria.setRecNumPerPage(20);		
+		list = boardDAO.list(recordCriteria.getStartRec(),
+				 								recordCriteria.getEndRec());
+	
+		return list;
+	}
 
 	//첨부파일 다운로드 
 	@Override
@@ -178,10 +193,33 @@ public class BoardSVCImpl implements BoardSVC {
 			
 			addFiles(files, boardVO.getBnum());
 		}
-		
-		
+				
 		return result;
+	}
 
+	//페이징 제어 반환
+	@Override
+	public PageCriteria getPageCriteria(int reqPage) {
+
+		//한 페이지에 보여줄 레코드 수
+		recordCriteria.setRecNumPerPage(20);
+		
+		//사용자의 요청 페이지
+		recordCriteria.setReqPage(reqPage);
+		
+		//한 페이지에 보여줄 페이지 수 
+		pageCriteria.setPageNumPerPage(10);
+		
+		//레코드 정보
+		pageCriteria.setRc(recordCriteria);
+		
+		//페이징 계산
+		pageCriteria.calculatePaging();
+		
+		//게시글 총 레코드 건수
+		pageCriteria.setTotalRec(boardDAO.totalRecordCount());
+		
+		return pageCriteria;
 	}
 
 

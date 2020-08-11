@@ -18,7 +18,7 @@
 #boardList > div {
   display: flex;
   justify-content: center;
-  padding: 10px 0;
+	padding: 10px 0 20px;
 }
 /* 게시글 타이틀 폰트 굵기 */
 #boardList h2 {
@@ -35,8 +35,8 @@
 }
 /* 게시글 내용 */
 #boardList .wrapper .rec {
-  font-size: 0.7em;
-  padding: 3px;
+  font-size: 0.8em;
+  padding: 5px;
 }
 
 /* 버튼 그룹 */
@@ -44,12 +44,21 @@
   display: flex;
   justify-content: flex-end;
 }
+
 /* 페이징 */
 #boardList .paging {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
+}
+#boardList .paging div{
+	padding: 2px;
+}
+
+#boardList .paging div.active {
+	background-color: #d49466;
+}
+#boardList .paging div.active a {
+	color: white;
 }
 
 /* 검색 */

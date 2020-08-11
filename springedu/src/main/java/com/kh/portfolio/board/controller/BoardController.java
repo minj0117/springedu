@@ -3,6 +3,7 @@ package com.kh.portfolio.board.controller;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
@@ -28,6 +29,7 @@ import com.kh.portfolio.board.svc.BoardSVC;
 import com.kh.portfolio.board.vo.BoardCategoryVO;
 import com.kh.portfolio.board.vo.BoardFileVO;
 import com.kh.portfolio.board.vo.BoardVO;
+import com.kh.portfolio.common.page.RecordCriteria;
 
 @Controller
 @RequestMapping("/board")
@@ -79,14 +81,38 @@ public class BoardController {
 	
 	
 	//게시글 목록
-	@GetMapping("list")
-	public String list(Model model) {
+//	@GetMapping("/list")
+//	public String list(Model model) {
+//		
+//		model.addAttribute("list", boardSVC.list());
+//		
+//		return "/board/list";
+//	}
+
+	//게시글 목록
+	@GetMapping({"/list", "/list/{reqPage}"})
+	public String list(
+			@PathVariable("reqPage") Optional<Integer> reqPage,
+			Model model
+			) {
 		
-		model.addAttribute("list", boardSVC.list());
+		//url 경로 상에 reqPage값이 존재하지 않으면 1로 설정함.
+		//case1 1)
+//		int page = 1;		
+//		if(reqPage.isPresent()) {
+//			page = reqPage.get();
+//		}
 		
+		//case 2)
+//		int page = (reqPage.isPresent()) ? reqPage.get() : 1;
+//		
+//		logger.info("reqPage:"+reqPage.orElse(1));
+		
+		model.addAttribute("list", boardSVC.list(reqPage.orElse(1)));
+		model.addAttribute("pageCriteria", boardSVC.getPageCriteria(reqPage.orElse(1)));
 		return "/board/list";
 	}
-
+	
 	//게시글 보기
 	@GetMapping("/view/{bnum}")
 	public String view(
