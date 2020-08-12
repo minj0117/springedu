@@ -17,6 +17,7 @@ import com.kh.portfolio.board.dao.BoardDAO;
 import com.kh.portfolio.board.vo.BoardCategoryVO;
 import com.kh.portfolio.board.vo.BoardFileVO;
 import com.kh.portfolio.board.vo.BoardVO;
+import com.kh.portfolio.common.page.FindCriteria;
 import com.kh.portfolio.common.page.PageCriteria;
 import com.kh.portfolio.common.page.RecordCriteria;
 
@@ -34,7 +35,10 @@ public class BoardSVCImpl implements BoardSVC {
 	
 	@Inject
 	PageCriteria pageCriteria;	
-
+	
+	@Inject
+	FindCriteria findCriteria;
+	
 	//게시판 카테고리 읽어 오기
 	@Override
 	public List<BoardCategoryVO> getCategory() {
@@ -165,9 +169,29 @@ public class BoardSVCImpl implements BoardSVC {
 		//한 페이지에 보여줄 레코드 수 세팅
 		recordCriteria.setRecNumPerPage(20);		
 		list = boardDAO.list(recordCriteria.getStartRec(),
-				 								recordCriteria.getEndRec());
+				 							   recordCriteria.getEndRec());
 	
 		return list;
+	}
+	
+	//게시글 목록(검색 포함)
+	@Override
+	public List<BoardVO> list(int reqPage, String searchType, String keyword) {
+		
+		List<BoardVO> list = null;
+		
+		//요청 페이지		
+		recordCriteria.setReqPage(reqPage);		
+		
+		//한 페이지에 보여줄 레코드 수 세팅
+		recordCriteria.setRecNumPerPage(20);		
+		list = boardDAO.list(recordCriteria.getStartRec(),
+				 								 recordCriteria.getEndRec(),
+				 								 searchType,
+				 								 keyword);
+	
+		return list;
+		
 	}
 
 	//첨부파일 다운로드 
@@ -197,30 +221,64 @@ public class BoardSVCImpl implements BoardSVC {
 		return result;
 	}
 
-	//페이징 제어 반환
+	//페이징제어 반환
 	@Override
 	public PageCriteria getPageCriteria(int reqPage) {
 
-		//한 페이지에 보여줄 레코드 수
+		//한페이지에 보여줄 레코드수
 		recordCriteria.setRecNumPerPage(20);
 		
-		//사용자의 요청 페이지
+		//사용자의 요청페이지
 		recordCriteria.setReqPage(reqPage);
 		
-		//한 페이지에 보여줄 페이지 수 
+		//한페이지에보여줄 페이지수
 		pageCriteria.setPageNumPerPage(10);
 		
-		//레코드 정보
+		//레코드정보
 		pageCriteria.setRc(recordCriteria);
-		
-		//페이징 계산
-		pageCriteria.calculatePaging();
 		
 		//게시글 총 레코드 건수
 		pageCriteria.setTotalRec(boardDAO.totalRecordCount());
 		
+		//페이징계산
+		pageCriteria.calculatePaging();		
+
 		return pageCriteria;
 	}
+
+	//페이징제어 + 검색어포함
+	@Override
+	public FindCriteria getFindCriteria(int reqPage, String searchType, String keyword) {
+
+		//한페이지에 보여줄 레코드수
+		recordCriteria.setRecNumPerPage(20);
+		
+		//사용자의 요청페이지
+		recordCriteria.setReqPage(reqPage);
+		
+		//한페이지에보여줄 페이지수
+		pageCriteria.setPageNumPerPage(10);
+		
+		//레코드정보
+		pageCriteria.setRc(recordCriteria);
+
+		
+		//게시글 총 레코드 건수
+		pageCriteria.setTotalRec(boardDAO.totalRecordCount(searchType,keyword));
+				
+		//페이징계산
+		pageCriteria.calculatePaging();
+		
+		//검색어정보
+		findCriteria.setPageCriteria(pageCriteria);
+		findCriteria.setSearchType(searchType);
+		findCriteria.setKeyword(keyword);
+		
+		return findCriteria;
+	}
+	
+
+
 
 
 }

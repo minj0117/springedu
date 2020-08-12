@@ -32,7 +32,7 @@
 	        </list>
 	    </property>
 	</bean>
-	
+
 	<!-- db연동 설정 -->
 	<!-- 데이터소스 설정 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
@@ -58,9 +58,9 @@
 	<!-- 트랜잭션 설정 -->
 	<bean id="transactionManager"
 				class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource"/>
+		<property name="dataSource" ref="dataSource"/> 
 	</bean>
-	<!-- @Transaction Annotation을 찾아서 트랜잭션을 관리해 줌. -->
+	<!-- @Transaction 어노테이션을 찾아서 트랜젹션을 관리해줌. -->
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	
 	
@@ -71,13 +71,9 @@
 														expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
 	
-	<!-- @Aspect가 적용된 클래스를 자동으로 실행 시점에 타깃(핵심 기능)에 위빙(삽입 과정)하는 설정 -->
- 	<aop:aspectj-autoproxy/> 
-	
+	<!-- @Aspect가 적용된 클래스를 자동으로 실행시점에 타겟(핵심기능)에 위빙(삽입과정)하는 설정-->
+ 	<aop:aspectj-autoproxy/>
 </beans>
-
-
-
 
 
 
