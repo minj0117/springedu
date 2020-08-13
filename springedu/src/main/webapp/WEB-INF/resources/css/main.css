@@ -31,22 +31,24 @@
   	font-weight: bold;
   }
   
-  .container{ width:80%; margin:0px auto; }
+  .container{ width:80%; margin:0px auto; padding:0px;}
 
   /* 최상위 메뉴 */
-  .uppermost { background-color: black; }
+  .uppermost { background-color: black; position:sticky; top:0px; z-index:100;}
   .uppermost > .container-upm{ height:30px; line-height: 30px; text-align: right; background-color: black; }
   .uppermost > .container-upm > p { margin-right:10px; font-size: 0.8rem; color: white; font-weight:bold; }
   .uppermost > .container-upm > p > a { text-decoration: none; color: white; }
   .uppermost > .container-upm > p > a:hover { text-decoration: underline; color: white; }
   
   /* 헤더 영역 */
-  header { }
-  header > .container-h { background-image: url("https://cdn.pixabay.com/photo/2020/01/26/20/14/computer-4795762__340.jpg") ; 
-    background-size: 800px 150px; height:150px; text-align: center; background-color: gray; opacity: 0.8; }
+  header {position:sticky; top:30px; z-index:100; }
+  header > .container-h {
+/*   	background-image: url("https://cdn.pixabay.com/photo/2020/01/26/20/14/computer-4795762__340.jpg") ; 
+    background-size: 800px 150px; height:150px; text-align: center; background-color: gray; opacity: 0.8;  */    
+  }
 
   /* 메뉴 영역 */
-  nav{}
+  nav{position:sticky; top:30px; z-index:200;}
   nav > .container-n{ height:50px; background-color: black; }
   nav > .container-n > ul{ display:flex; list-style-type: none; height:50px; width:500px; margin: 0px auto; line-height: 50px; }
   nav > .container-n > ul > li { width:100px; text-align: center; font-size:0.8rem; }
