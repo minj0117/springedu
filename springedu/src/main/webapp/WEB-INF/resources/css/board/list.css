@@ -1,7 +1,21 @@
 @charset "UTF-8";   
 #boardList {
-	margin: 50px 0;
+	margin: 40px 0;
 } 
+
+#boardList .totalRec {
+	display: flex;
+	justify-content: flex-end;
+	padding: 0px;
+	padding-bottom: 5px;
+
+}
+
+#boardList .totalRec .btn.badge-secondary {
+	padding: 2px 12px;	
+	font-size: 0.8rem;
+}
+
 #boardList .wrapper {
   display: grid;
   grid-template-columns: 1fr 2fr 6fr 2fr 1fr 1fr;
@@ -66,3 +80,15 @@
   display: flex;
   justify-content: center;
 }
+
+#boardList .find #findBtn {
+	padding: 2px 6px;
+}
+
+#boardList #findCriteria * {
+	vertical-align: middle;
+}
+
+
+
+

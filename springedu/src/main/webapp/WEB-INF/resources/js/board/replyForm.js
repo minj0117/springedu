@@ -33,9 +33,12 @@ function cancelBtn_F(e) {
 
 //목록
 function listBtn_F(e) {
+	e.preventDefault();
   console.log("목록");
   //목록 리스트로 이동
-  location.href = "/portfolio/board/list";
+  const returnPage = e.target.getAttribute("data-returnPage");
+  const url = `/portfolio/board/list/${returnPage}`;
+  location.href = url;
 }
 
 //유효성 체크
@@ -50,6 +53,7 @@ function checkValidation(){
 	}
 	document.getElementById('btitle.error').textContent = "";
 	
+	/*
 	//작성자
 	const bidTag = document.getElementById('bid');
 	if(bidTag.value.trim().length == 0){
@@ -66,6 +70,7 @@ function checkValidation(){
 		bidTag.select();
 		return false;
 	}
+	*/
 	
 	
 	//내용
