@@ -11,7 +11,7 @@
  		/* outline: 1px dotted red; */
  		display:flex;
  		justify-content: center;
- 		align-items: center;
+ 		align-items: flex-end;
 /*  		padding: 30px; */
  	}
  	main .container .content section article:nth-child(1){
