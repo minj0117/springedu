@@ -21,7 +21,7 @@
 		<div class="container">
 			<div class="content">
 				<section>
-					<form id="modifyForm" method="post" action="${contextPath}/member/modify">
+					<form id="modifyForm" method="post" action="${contextPath}/member/modify" enctype="multipart/form-data">
 						<ul>
 						  <li><label for="file">프로파일 사진</label></li>				 
 				      <li>
@@ -30,6 +30,7 @@
 				          <img id="mypic" src="data:${requestScope.ftype};base64,${requestScope.pic }" alt="" />
 				        </div>
 				      </li>
+				      <li><span class="errmsg" id="errmsg_file"></span></li>
 							<li><label for="id">아이디</label></li>
 							<li><input type="text" name="id" id="id" value='${sessionScope.member.id }' readonly="readonly" /></li>
 							<li><label for="pw">비밀번호</label></li>
