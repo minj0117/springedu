@@ -21,10 +21,10 @@ import com.kh.portfolio.common.page.RecordCriteria;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/*.xml"})
-public class BoardDAOImplXMLTest {
+public class BoardDAOImplXMLTEST {
 	
 	private static final Logger logger = 
-			LoggerFactory.getLogger(BoardDAOImplXMLTest.class);
+			LoggerFactory.getLogger(BoardDAOImplXMLTEST.class);
 
 	@Inject
 	BoardDAO boardDAO;
