@@ -2,17 +2,31 @@ package com.kh.portfolio.board.vo;
 
 import java.sql.Timestamp;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
+
 import lombok.Data;
 
 @Data
 public class RboardVO { 
 	
-	private long rnum; 					//	RNUM	NUMBER(10,0)	No		1	댓글 번호
-	private long bnum;				  //	BNUM	NUMBER(10,0)	No		2	게시글 번호 / 최초 원글
+	@NotNull
+	private int rnum; 					//	RNUM	NUMBER(10,0)	No		1	댓글 번호
+	@NotNull
+	private int bnum;				  //	BNUM	NUMBER(10,0)	No		2	게시글 번호 / 최초 원글
+	@NotNull
+	@Email
+//	@Pattern(regexp="\\w+@\\w+\\.\\w+(\\.\\w+)?", 
+//					 message="이메일 형식으로 입력 바랍니다. ex)test@gmail.com")
 	private String rid;					//	RID	VARCHAR2(40 BYTE)	No		3	댓글 작성자 ID
+	@NotNull
+	@Size(min=2, max=10, message = "별칭은 최대 10자리까지 가능합니다.")
 	private String rnickname;		//	RNICKNAME	VARCHAR2(30 BYTE)	Yes		4	댓글 작성자 이름(별칭)
 	private Timestamp rcdate;		//	RCDATE	TIMESTAMP(6)	No	"systimestamp 5	작성일
 	private Timestamp rudate;		//	RUDATE	TIMESTAMP(6)	Yes	"systimestamp 6	수정일
+	@NotNull
 	private String rcontent; 		//	RCONTENT	CLOB	No		7	댓글 본문 내용
 	
 	//선호도

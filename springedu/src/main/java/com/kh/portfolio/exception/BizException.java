@@ -1,6 +1,5 @@
 package com.kh.portfolio.exception;
 
-
 public class BizException extends RuntimeException {
 
 	public BizException() {}
@@ -10,5 +9,4 @@ public class BizException extends RuntimeException {
 	public BizException(Throwable t) {
 		super(t);
 	}
-	
 }

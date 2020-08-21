@@ -64,8 +64,12 @@
 													use-default-filters="false">
 		<context:include-filter type="annotation" 
 														expression="org.springframework.stereotype.Controller"/>
+		<!-- 예외 처리 컨트롤러  -->
+		<context:include-filter type="annotation" 
+														expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
 	</context:component-scan>	
 	
+ <!-- @Aspect가 적용된 클래스를 자동으로 실행 시점에 타깃(핵심 기능)에 위빙(삽입하는)하는 설정  -->
  <aop:aspectj-autoproxy/> 
 </beans:beans>
 
