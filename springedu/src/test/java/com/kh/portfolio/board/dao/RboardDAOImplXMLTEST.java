@@ -32,19 +32,19 @@ public class RboardDAOImplXMLTEST {
 //	int write(RboardVO rboardVO);
 	@Test
 	@DisplayName("댓글 작성")
-	@Disabled
+//	@Disabled
 	void write() {
 		RboardVO rboardVO = new RboardVO();
-		rboardVO.setBnum(470);
-		rboardVO.setRid("test@test.com");
-		rboardVO.setRcontent("470 게시글에 대한 댓글 테스트 중");
+		rboardVO.setBnum(505);
+		rboardVO.setRid("test2@test.com");
+		rboardVO.setRcontent("505 게시글에 대한 댓글 테스트 중");
 		rboardDAO.write(rboardVO);
 		
 		rboardVO = rboardDAO.replyView(rboardVO.getRnum());
 		logger.info(rboardVO.toString());
 	}
 
-//	//댓글 수정
+//	//댓글 수정 
 //	int modify(RboardVO rboardVO);
 	@Test
 	@DisplayName("댓글 수정")
@@ -98,7 +98,7 @@ public class RboardDAOImplXMLTEST {
 //	int vote(VoteVO voteVO);
 	@Test
 	@DisplayName("호감도 투표")
-	//@Disabled
+	@Disabled
 	void vote() {
 		VoteVO voteVO = new VoteVO();
 			

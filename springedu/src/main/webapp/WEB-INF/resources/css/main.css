@@ -59,7 +59,7 @@
   main{ display:flex; justify-context:center;}
 
   /* 푸터 영역 */
-  footer{}
+  footer{position:sticky; bottom:0px, z-index:100px}
   footer > .container-f{ height:70px; line-height: 70px; text-align: center; background-color: gray;
     color:white; font-weight: bold; font-size:0.8rem; }
 

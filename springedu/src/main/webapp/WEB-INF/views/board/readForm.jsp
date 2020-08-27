@@ -109,7 +109,10 @@
 		        </li>
 		      </ul>
 				</form:form>
+				<!-- 댓글 -->
+				<%@include file="/WEB-INF/views/board/rereply.jsp" %>
 			</div>
+			
 		</div>
 	</main> 
 	

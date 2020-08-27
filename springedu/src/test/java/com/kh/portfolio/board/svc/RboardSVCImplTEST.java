@@ -29,10 +29,10 @@ public class RboardSVCImplTEST {
 		
 		RboardVO rboardVO = new RboardVO();
 		
-		rboardVO.setPrnum((long)30);
-		rboardVO.setBnum((long)470);
+		rboardVO.setPrnum((long)83);
+		rboardVO.setBnum((long)505);
 		rboardVO.setRid("test@test.com");
-		rboardVO.setRcontent("30번 댓글에 대한 대댓글 작성 테스트" );
+		rboardVO.setRcontent("83번 댓글에 대한 대댓글 작성 테스트" );
 		
 		rboardSVC.reply(rboardVO);
 	}
