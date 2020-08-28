@@ -37,6 +37,7 @@ public class RboardDAOImplXMLTEST {
 		RboardVO rboardVO = new RboardVO();
 		rboardVO.setBnum(505);
 		rboardVO.setRid("test2@test.com");
+		rboardVO.setRnickname("테스터");
 		rboardVO.setRcontent("505 게시글에 대한 댓글 테스트 중");
 		rboardDAO.write(rboardVO);
 		
@@ -79,7 +80,7 @@ public class RboardDAOImplXMLTEST {
 //	List<RboardVO> list();
 	@Test
 	@DisplayName("댓글 목록")
-	@Disabled
+//	@Disabled
 	void list() {
 		List<RboardVO> list = rboardDAO.list();
 		
