@@ -20,7 +20,7 @@ public interface RboardDAO {
 	RboardVO replyView(long rnum);
 	
 	//댓글 목록
-	List<RboardVO> list();
+	List<RboardVO> list(long bnum, long startRec, long endRec);
 	
 	//대댓글 작성
 	int reply(RboardVO rboardVO);
@@ -31,5 +31,9 @@ public interface RboardDAO {
 	//댓글 호감, 비호감	
 	//투표 이력 없으면 추가, 있으면 변경
 	int vote(VoteVO voteVO);
+	
+	//게시글 총 레코드 수
+	int  totalRecordCount();
+	int  totalRecordCount(String searchType, String keyword);
 	
 }
