@@ -7,6 +7,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 
 @Data
@@ -24,6 +26,7 @@ public class RboardVO {
 //	@NotNull
 	@Size(min=2, max=10, message = "별칭은 최대 10자리까지 가능합니다.")
 	private String rnickname;		//	RNICKNAME	VARCHAR2(30 BYTE)	Yes		4	댓글 작성자 이름(별칭)
+	@JsonFormat(pattern = "yyyy-MM-dd a h:mm ", timezone = "Asia/Seoul")
 	private Timestamp rcdate;		//	RCDATE	TIMESTAMP(6)	No	"systimestamp 5	작성일
 	private Timestamp rudate;		//	RUDATE	TIMESTAMP(6)	Yes	"systimestamp 6	수정일
 	@NotNull

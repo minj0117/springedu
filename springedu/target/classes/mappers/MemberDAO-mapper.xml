@@ -18,11 +18,11 @@
 			       gender   = #{gender}, 
 			       region   = #{region},
 			       birth    = #{birth},
-		         udate    = systimestamp
+		         udate    = systimestamp,
 		         pic      = #{pic},
 		         fsize    = #{fsize},
 		         ftype    = #{ftype},
-		         fname    = #{fname},
+		         fname    = #{fname}
 			 where id       = #{id} 
 			   and pw       = #{pw}				
 	</update>

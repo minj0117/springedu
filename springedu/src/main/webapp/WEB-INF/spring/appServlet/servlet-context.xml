@@ -40,6 +40,7 @@
 		<mapping path="/admin/**/"/>
 		<mapping path="/board/writeForm/**/"/>		
 		<mapping path="/board/reply/**/"/>		
+
 		<!-- 2) interceptor 구현 클래스 -->
 		<beans:bean id="loginInterceptor"
 								class="com.kh.portfolio.interceptor.LoginInterceptor"/>

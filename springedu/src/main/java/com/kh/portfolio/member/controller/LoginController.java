@@ -3,6 +3,7 @@ package com.kh.portfolio.member.controller;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -41,9 +42,9 @@ public class LoginController {
 			@RequestParam("reqURI") String reqURI,
 			HttpSession session,
 			Model model){
-		logger.info("String login() 호출됨!");
-		logger.info("id :" + id);
-		logger.info("pw :" + pw);
+//		logger.info("String login() 호출됨!");
+//		logger.info("id :" + id);
+//		logger.info("pw :" + pw);
 		
 		MemberVO memberVO = memberSVC.listOneMember(id);
 		//1) 회원 id가 없는 경우
@@ -54,6 +55,11 @@ public class LoginController {
 		//2) 회원 id가 존재할 경우
 			//2-1) 비밀번호가 일치하는 경우
 			if(memberVO.getPw().equals(pw)) {
+				if(memberVO.getPic() != null) {
+					byte[] encoded = Base64.encodeBase64(memberVO.getPic());
+					memberVO.setPicBase64(new String(encoded));
+					memberVO.setPic(null);
+				}
 				session.setAttribute("member", memberVO);
 			} else {
 			//2-2) 비밀번호가 틀린 경우

@@ -72,44 +72,45 @@
 				parameterType="map"
 				resultType="RboardVO">
 
-	select  
-	        t1.rnum,
-	        t1.bnum,   
-	        t1.rid, rnickname,	
-	        t1.rcontent,	
-	        t1.rcdate,              
-	        t1.rgroup, rstep, rindent,
-	        t1.prnum,
-	        nvl(t2.good, 0) rgood,
-	  	    nvl(t2.bad, 0)  rbad
-	  from 
-	   (select   	  
-	          rnum,
-	          bnum,   
-	          rid, rnickname,	
-	          rcontent,	
-	          rcdate,              
-	          rgroup, rstep, rindent,
-	          prnum
-	    from (  select  row_number() over( order by rgroup desc, rstep asc) as num,
-	                    t1.rnum,
-	                    t1.bnum,
-	                    t1.rid, t1.rnickname,                   
-	                    t1.rcontent,	
-	                    t1.rcdate, 
-	                    t1.rgroup, t1.rstep, t1.rindent,
-	                    t1.prnum
-	            	from  rboard t1
-	             where  t1.bnum = #{bnum}	
-					  )
-	  where num between #{startRec} and #{endRec}) t1,
-	  
-	  (select rnum, nvl(count(decode(vote,'GOOD',1)),0) good, nvl(count(decode(vote,'BAD',2)),0) bad
-	    from rboard_vote
-	group by rnum) t2
-	
-	
-	 where t1.rnum = t2.rnum(+)
+		select 
+		    t1.rnum,
+		    t1.bnum,
+		    t1.rid, t1.rnickname, 
+		    t1.rcontent,	
+		    t1.rcdate, 
+		    t1.rgroup, t1.rstep, t1.rindent,
+		    t1.prnum, t1.prid,  t1.prnickname,
+		    nvl(t2.good,0) rgood,
+		    nvl(t2.bad,0)  rbad,
+		    t1.pic, t1.ftype
+		  from
+		     ( select   		
+		               rnum,
+		               bnum,
+		               rid, rnickname, 
+		               rcontent,	
+		               rcdate, 
+		               rgroup, rstep, rindent,
+		               prnum, prid, prnickname,
+		               pic, ftype
+		        from (  select  row_number() over( order by rgroup desc, rstep asc) as num,
+		                        t1.rnum,
+		                        t1.bnum,
+		                        t1.rid, t1.rnickname, 
+		                        t1.rcontent,	
+		                        t1.rcdate, 
+		                        t1.rgroup, t1.rstep, t1.rindent,
+		                        t1.prnum,  t1.prid,  t1.prnickname,
+		                        t2.pic, t2.ftype
+		                  from  rboard t1, member t2
+		                 where  t1.rid = t2.id
+		                 	 and 	t1.bnum = #{bnum} 
+		             )
+		      where  num between #{startRec} and #{endRec} ) t1,
+		     ( select rnum, nvl(count(decode(vote,'GOOD',1)),0) good, nvl(count(decode(vote,'BAD',2)),0) bad
+		         from rboard_vote
+		      group by rnum ) t2
+		   where t1.rnum = t2.rnum(+)
  
 
 </select>
@@ -177,6 +178,7 @@ WHEN NOT MATCHED THEN
 
 <!-- 게시글 총 레코드 수 -->
 <select id="totalRecordCount"
+				parameterType="long"
 				resultType="int">
 
 	 select count(*) as totalRecCnt

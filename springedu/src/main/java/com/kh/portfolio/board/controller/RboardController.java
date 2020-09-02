@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -31,6 +32,7 @@ import com.kh.portfolio.board.vo.VoteVO;
 import com.kh.portfolio.common.page.PageCriteria;
 import com.kh.portfolio.exception.ErrorMsg;
 import com.kh.portfolio.exception.RestAccessException;
+import com.kh.portfolio.member.svc.MemberSVC;
 import com.kh.portfolio.member.vo.MemberVO;
 
 @RestController
@@ -42,6 +44,9 @@ public class RboardController {
 	
 	@Inject
 	RboardSVC rboardSVC;
+	
+	@Inject
+	MemberSVC memberSVC;
 	
 	//댓글 작성
 	@PostMapping(value="", produces="application/json")
@@ -154,7 +159,8 @@ public class RboardController {
 	@GetMapping(value="/{reqPage}/{bnum}", produces = "application/json")
 	public ResponseEntity<Map<String, Object>> list(
 			@PathVariable(value="reqPage", required = false) Optional<Integer> reqPage,
-			@PathVariable(value="bnum", required = true) long bnum
+			@PathVariable(value="bnum", required = true) long bnum,
+			HttpServletRequest request
 			) {
 		ResponseEntity<Map<String, Object>> res = null;
 		Map<String, Object> map = new HashMap();
@@ -163,9 +169,8 @@ public class RboardController {
 		List<RboardVO> list = rboardSVC.list(reqPage.orElse(1), bnum);
 		
 		//2) 페이징 정보
-		PageCriteria pc = rboardSVC.getPageCriteria(reqPage.orElse(1));
-		
-		//3) Map에 댓글 정보 + 페이징 정보 담기
+		PageCriteria pc = rboardSVC.getPageCriteria(reqPage.orElse(1), bnum);		
+	
 		map.put("list", list);
 		map.put("pc", pc);
 				
@@ -181,13 +186,20 @@ public class RboardController {
 	@PutMapping(value="/vote", produces = "application/json")
 	public ResponseEntity<String> vote(
 			@Valid @RequestBody VoteVO voteVO,
-			BindingResult result			
+			BindingResult result,
+			HttpServletRequest request
 			) {
 		ResponseEntity<String> res = null;
 		
 		if(result.hasErrors()) {
 			throwRestAccessException(result);
 		}		
+		
+		//세션에서 아이디 가져오기
+		MemberVO memberVO = (MemberVO)request.getSession(false).getAttribute("member");
+		if(memberVO != null) {
+			voteVO.setRid(memberVO.getId());
+		}
 				
 		int cnt = rboardSVC.vote(voteVO);
 		
