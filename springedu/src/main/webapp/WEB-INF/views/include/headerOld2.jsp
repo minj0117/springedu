@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <style>
 	img {
-		max-height: 300px;
+		max-height: 250px;
 	}
 	
  	.carousel-item {
