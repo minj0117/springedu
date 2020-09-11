@@ -278,7 +278,7 @@ paging.addEventListener("click", (e) => {
   replyList(g_reqPage);
 });
 
-// 모달 이벤트트 등록 시작
+// 모달 이벤트 등록 시작
 modalOveray.addEventListener("click", (e) => {
   modal.classList.add("hidden");
 });
@@ -293,7 +293,7 @@ modalDeletBtn.addEventListener("click", (e) => {
   console.log("삭제진행");
   deleteComment(e);
 });
-// 모달 이벤트트 등록 종료
+// 모달 이벤트 등록 종료
 
 //댓글목록가져오기
 replyList(g_reqPage);
