@@ -22,7 +22,7 @@ var g_url = '${contextPath }/rboard'; //공통URL
   	<c:if test="${!empty sessionScope.member}">  
       <img src="data:${sessionScope.member.ftype};base64,${sessionScope.member.picBase64}" alt="" />
     </c:if>
-    </div>
+   </div>
     <div class="replybody">
       <div class="writer">${(sessionScope.member.nickname==null)? "Guest":sessionScope.member.nickname }</div>
       <div
